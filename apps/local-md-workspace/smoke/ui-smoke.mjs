@@ -66,7 +66,7 @@ try {
   await assertMockDropboxWorkspaceFlow(client, sessionId);
 
   await client.send("Browser.close");
-  console.log(`Local Markdown workspace UI smoke passed at ${SMOKE_URL}`);
+  console.log(`Grove workspace UI smoke passed at ${SMOKE_URL}`);
 } finally {
   if (!chrome.killed) chrome.kill("SIGTERM");
   await rm(userDataDir, {

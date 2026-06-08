@@ -71,6 +71,7 @@ import {
   type FileTreeCreateKind,
   type FileTreeDeleteTarget,
 } from "@/components/FileTree";
+import { GroveMark } from "@/components/GroveMark";
 import { LiveMdEditor, type LiveMdImageFilesInput } from "@/components/LiveMdEditor";
 import { isSharedFilePath, SharedFileEditor } from "@/components/SharedFileEditor";
 import {
@@ -297,8 +298,7 @@ function LocalWorkspaceApp() {
   }, []);
 
   let selectedPath = selectedFile?.path ?? null;
-  let rootName =
-    tree?.name ?? workspaceBackend?.name ?? storedWorkspaceHandle?.name ?? "Local Markdown";
+  let rootName = tree?.name ?? workspaceBackend?.name ?? storedWorkspaceHandle?.name ?? "Grove";
   let selectedPathLabel = selectedFile
     ? selectedFile.path == selectedFile.name
       ? ""
@@ -1491,7 +1491,13 @@ function LocalWorkspaceApp() {
           )}
         >
           <div className="flex h-12 shrink-0 items-center gap-2 px-3">
-            <div className="min-w-0 flex-1 truncate text-sm font-medium">{rootName}</div>
+            <GroveMark className="size-8" decorative />
+            <div className="min-w-0 flex-1">
+              <div className="truncate text-sm font-medium">{rootName}</div>
+              <div className="truncate text-xs text-sidebar-foreground/55">
+                {files.length == 1 ? "1 markdown file" : `${files.length} markdown files`}
+              </div>
+            </div>
             <TooltipIconButton
               label="Open folder"
               size="icon-sm"
@@ -1593,10 +1599,9 @@ function LocalWorkspaceApp() {
             >
               <MenuIcon data-icon="inline-start" />
             </TooltipIconButton>
+            {!selectedFile && <GroveMark className="size-6" decorative />}
             <div className="min-w-0 flex-1">
-              <div className="truncate text-sm font-medium">
-                {selectedFile?.name ?? "Local Markdown"}
-              </div>
+              <div className="truncate text-sm font-medium">{selectedFile?.name ?? "Grove"}</div>
               {selectedPathLabel && (
                 <div className="truncate text-xs text-muted-foreground">{selectedPathLabel}</div>
               )}
@@ -1858,7 +1863,7 @@ function WorkspaceEmpty({
     <Empty className="h-full rounded-none border-0">
       <EmptyHeader>
         <EmptyMedia variant="icon">
-          <FolderOpenIcon />
+          <GroveMark className="size-14" />
         </EmptyMedia>
         <EmptyTitle>{emptyTitle(hasWorkspace, fileCount)}</EmptyTitle>
         {!browserSupported && (

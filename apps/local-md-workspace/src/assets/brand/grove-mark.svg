@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="105 126 260 260" role="img" aria-labelledby="title desc">
+  <title id="title">Grove mark</title>
+  <desc id="desc">A branching Grove logo mark with structural nodes.</desc>
+  <defs>
+    <linearGradient id="branch" x1="162" x2="302" y1="165" y2="356" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#8ec07c" />
+      <stop offset="0.58" stop-color="#b8bb26" />
+      <stop offset="1" stop-color="#8ec07c" />
+    </linearGradient>
+    <filter id="stemShadow" x="-18%" y="-18%" width="136%" height="136%" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#282828" flood-opacity="0.18" />
+    </filter>
+  </defs>
+
+  <g fill="none" filter="url(#stemShadow)" stroke="url(#branch)" stroke-linecap="round" stroke-linejoin="round" stroke-width="9">
+    <path d="M235 340 C235 302 235 235 235 176" />
+    <path d="M235 279 C212 257 183 242 150 242" />
+    <path d="M235 279 C258 257 287 242 320 242" />
+    <path d="M235 247 C216 224 197 205 176 188" />
+    <path d="M235 247 C254 224 273 205 294 188" />
+    <path d="M235 337 C224 353 207 360 190 357" />
+    <path d="M235 337 C246 353 263 360 280 357" />
+  </g>
+
+  <g fill="url(#branch)">
+    <circle cx="235" cy="166" r="14" />
+    <circle cx="176" cy="188" r="14" />
+    <circle cx="294" cy="188" r="14" />
+    <circle cx="150" cy="242" r="14" />
+    <circle cx="320" cy="242" r="14" />
+  </g>
+</svg>

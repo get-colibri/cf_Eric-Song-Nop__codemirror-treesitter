@@ -1,17 +1,11 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { liveMdLoroCollaboration } from "@codemirror-treesitter/live-md-loro";
-import {
-  AlertCircleIcon,
-  CloudIcon,
-  RefreshCwIcon,
-  Share2Icon,
-  WifiIcon,
-  WifiOffIcon,
-} from "lucide-react";
+import { AlertCircleIcon, CloudIcon, RefreshCwIcon, WifiIcon, WifiOffIcon } from "lucide-react";
 import { LoroDoc, UndoManager, VersionVector } from "loro-crdt";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Empty, EmptyContent, EmptyHeader, EmptyMedia, EmptyTitle } from "@/components/ui/empty";
+import { GroveMark } from "@/components/GroveMark";
 import { LiveMdEditor } from "@/components/LiveMdEditor";
 import {
   ShareRelayConnection,
@@ -169,7 +163,7 @@ export function SharedFileEditor({ href = window.location.href }: SharedFileEdit
     <main className="flex h-svh min-h-0 flex-col overflow-hidden bg-background text-foreground">
       <header className="flex min-h-14 shrink-0 items-center gap-3 border-b px-3">
         <div className="flex min-w-0 flex-1 items-center gap-2">
-          <Share2Icon className="size-4 shrink-0" />
+          <GroveMark className="size-7" decorative />
           <div className="min-w-0 truncate text-sm font-medium">{displayName}</div>
         </div>
         <Badge variant="secondary">
@@ -228,7 +222,7 @@ export function SharedFileEditor({ href = window.location.href }: SharedFileEdit
           <Empty className="max-w-md">
             <EmptyHeader>
               <EmptyMedia>
-                <Share2Icon />
+                <GroveMark className="size-14" />
               </EmptyMedia>
               <EmptyTitle>
                 {route.kind == "invalid" ? "Invalid shared file" : "Joining shared file"}
