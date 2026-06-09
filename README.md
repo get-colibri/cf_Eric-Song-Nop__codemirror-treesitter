@@ -1,24 +1,28 @@
 # GroveMd
 
+&#8203;
+
+&#8203;
+
 GroveMd is a local-first Markdown workspace for writing directly from the files
 you already own. Open a local folder in the browser, write in a Typora-style
 live Markdown editor, and keep the source as plain `.md` files instead of
 pushing notes through an app-specific storage model.
 
-![GroveMd local-first Markdown workspace](docs/grovemd-workspace.png)
+⁠![GroveMd local-first Markdown workspace](docs/grovemd-workspace.png)
 
 GroveMd is built for a small set of workflows that should stay simple:
 
 - **Local first**: grant access to a folder, edit Markdown in place, autosave
-  locally, and keep images beside the document in normal workspace assets.
+locally, and keep images beside the document in normal workspace assets.
 - **Easy sync**: keep working from the local folder or connect Dropbox when a
-  cloud-backed workspace is useful.
+cloud-backed workspace is useful.
 - **No app install**: run the editor as a web app while still using browser
-  file access for real local files.
+file access for real local files.
 - **Collaboration**: share a single file link through the Grove relay so guests
-  can co-edit without access to the owner's local folder or Dropbox workspace.
+can co-edit without access to the owner's local folder or Dropbox workspace.
 - **Instant live Markdown**: headings, tables, task lists, code fences, KaTeX,
-  Mermaid, and images render inline while the document remains editable.
+Mermaid, and images render inline while the document remains editable.
 
 Under the GroveMd app, this repository contains CodeMirror Tree-sitter, a
 Lezer-free CodeMirror 6 workspace backed by Tree-sitter through
@@ -35,31 +39,32 @@ collaboration flows.
 ## Current Stack
 
 - **Runtime and package manager**: Bun `1.3.14` through Vite+ `vp install`,
-  with Node.js `>=26.0.0` required by the workspace.
+with Node.js `>=26.0.0` required by the workspace.
 - **Toolchain**: Vite+ (`vp`) wraps Vite, Rolldown, Vitest, tsdown, Oxlint,
-  Oxfmt, and Vite Task. Root formatting, linting, type-aware checks, task
-  caching, and shared aliases are configured in `vite.config.ts`.
+Oxfmt, and Vite Task. Root formatting, linting, type-aware checks, task
+caching, and shared aliases are configured in `vite.config.ts`.
 - **Language and build config**: TypeScript 6.x, native TypeScript preview
-  dependencies in packages, ES modules everywhere, shared `tsconfig.*` files,
-  and package builds through `vp pack`.
+dependencies in packages, ES modules everywhere, shared `tsconfig.*` files,
+and package builds through `vp pack`.
 - **Editor foundation**: Official `@codemirror/state`, `@codemirror/view`,
-  `@codemirror/search`, and `@codemirror/lint` remain direct dependencies where
-  Lezer is not part of the contract.
+`@codemirror/search`, and `@codemirror/lint` remain direct dependencies where
+Lezer is not part of the contract.
 - **Parser layer**: `web-tree-sitter`, Tree-sitter grammar packages, bundled
-  WASM assets, highlight queries, incremental reparsing, and included ranges
-  for nested languages.
+WASM assets, highlight queries, incremental reparsing, and included ranges
+for nested languages.
 - **Markdown product layer**: LiveMD composes the local language, commands,
-  autocomplete, basic setup, language-data, and Gruvbox theme packages with
-  KaTeX, Mermaid, and `beautiful-mermaid`.
+autocomplete, basic setup, language-data, and Gruvbox theme packages with
+KaTeX, Mermaid, and `beautiful-mermaid`.
 - **Collaboration and workspace layer**: Optional LiveMD Loro bindings use
-  `loro-crdt` and `loro-codemirror`. Grove's local workspace app supports local
-  folders, Dropbox through the OpenDAL browser WASM wrapper, local image
-  assets, and shared-file hosting. Grove's relay runs as the `grove-relay`
-  Cloudflare Worker with Durable Object persistence, WebSocket sync, Wrangler,
-  and the Cloudflare Vite plugin. The `collab-editor` app remains a separate
-  Cloudflare collaboration demo.
+`loro-crdt` and `loro-codemirror`. Grove's local workspace app supports local
+folders, Dropbox through the OpenDAL browser WASM wrapper, local image
+assets, and shared-file hosting. Grove's relay runs as the `grove-relay`
+Cloudflare Worker with Durable Object persistence, WebSocket sync, Wrangler,
+and the Cloudflare Vite plugin. The `collab-editor` app remains a separate
+Cloudflare collaboration demo.
 
 ## Quickstart
+
 
 ```html
 <body>
@@ -77,6 +82,7 @@ decorations, Shadow DOM styling, and Gruvbox theming. See
 
 The programmatic API exposes the same runtime without custom elements:
 
+
 ```ts
 import { createLiveMdEditor } from "@codemirror-treesitter/live-md";
 
@@ -91,23 +97,23 @@ await editor.ready;
 ## What This Project Implements
 
 - A Tree-sitter-backed replacement for the CodeMirror language layer, including
-  `Language`, `LanguageSupport`, `LRLanguage`, `ParseContext`, syntax tree
-  wrappers, language data facets, mixed-language parsing, highlighting,
-  indentation, folding, bracket matching, bidi isolates, and stream-parser
-  compatibility.
+`Language`, `LanguageSupport`, `LRLanguage`, `ParseContext`, syntax tree
+wrappers, language data facets, mixed-language parsing, highlighting,
+indentation, folding, bracket matching, bidi isolates, and stream-parser
+compatibility.
 - A language-data registry that mirrors CodeMirror language metadata while
-  lazily loading Tree-sitter WASM grammars and highlight queries.
+lazily loading Tree-sitter WASM grammars and highlight queries.
 - Lezer-free implementations of CodeMirror commands, autocompletion, close
-  brackets, basic setup, merge views, LSP integration, and Gruvbox themes.
+brackets, basic setup, merge views, LSP integration, and Gruvbox themes.
 - LiveMD, a Markdown editor runtime built from the local Tree-sitter packages,
-  exposed through `createLiveMdEditor()`, `liveMarkdown()`,
-  `liveMdCodeFenceHighlighting()`, `defineLiveMdEditor()`, and
-  `<live-md-editor>`.
+exposed through `createLiveMdEditor()`, `liveMarkdown()`,
+`liveMdCodeFenceHighlighting()`, `defineLiveMdEditor()`, and
+`<live-md-editor>`.
 - Optional LiveMD collaboration bindings for Loro documents, presence, custom
-  text containers, and collaborative undo/redo.
+text containers, and collaborative undo/redo.
 - Validation tooling and apps that check public export parity, package
-  dependency boundaries, language-data coverage, example coverage, benchmark
-  coverage, and runtime behavior against official CodeMirror/Lezer packages.
+dependency boundaries, language-data coverage, example coverage, benchmark
+coverage, and runtime behavior against official CodeMirror/Lezer packages.
 
 The implementation packages intentionally do not depend on Lezer. The examples
 app is the comparison surface and is allowed to depend on official CodeMirror
@@ -122,35 +128,35 @@ not part of the contract: `@codemirror/state`, `@codemirror/view`,
 this repository replace the language-aware layers above those primitives.
 
 1. **Tree-sitter language runtime**:
-   `@codemirror-treesitter/language` adapts `web-tree-sitter` into
-   CodeMirror's language interfaces. It owns parser scheduling, incremental
-   parsing, syntax-tree wrappers, nested parsing, syntax highlighting,
-   indentation, folding, bracket matching, bidi isolation, and stream-parser
-   support.
+`@codemirror-treesitter/language` adapts `web-tree-sitter` into
+CodeMirror's language interfaces. It owns parser scheduling, incremental
+parsing, syntax-tree wrappers, nested parsing, syntax highlighting,
+indentation, folding, bracket matching, bidi isolation, and stream-parser
+support.
 2. **Language registry**:
-   `@codemirror-treesitter/language-data` builds `LanguageDescription` entries
-   on top of the language runtime. Each entry owns aliases, filename and
-   extension metadata, WASM grammar loading, optional highlight-query loading,
-   language data, and nested parser setup.
+`@codemirror-treesitter/language-data` builds `LanguageDescription` entries
+on top of the language runtime. Each entry owns aliases, filename and
+extension metadata, WASM grammar loading, optional highlight-query loading,
+language data, and nested parser setup.
 3. **Editor feature packages**:
-   `commands`, `autocomplete`, `merge`, and `lsp-client` reimplement the
-   CodeMirror feature packages that need syntax information. They depend on the
-   local language runtime instead of `@codemirror/language` or Lezer.
+`commands`, `autocomplete`, `merge`, and `lsp-client` reimplement the
+CodeMirror feature packages that need syntax information. They depend on the
+local language runtime instead of `@codemirror/language` or Lezer.
 4. **Assembly and styling**:
-   `basic-setup` assembles a CodeMirror setup from local feature packages, and
-   `theme-gruvbox` provides editor themes and highlight styles using local
-   highlight tags.
+`basic-setup` assembles a CodeMirror setup from local feature packages, and
+`theme-gruvbox` provides editor themes and highlight styles using local
+highlight tags.
 5. **Product surface**:
-   `live-md` composes the local packages into a Markdown editor with live block
-   widgets, code-fence highlighting, KaTeX and Mermaid rendering, Shadow DOM
-   web component integration, persistence, selection APIs, and benchmark
-   fixtures.
+`live-md` composes the local packages into a Markdown editor with live block
+widgets, code-fence highlighting, KaTeX and Mermaid rendering, Shadow DOM
+web component integration, persistence, selection APIs, and benchmark
+fixtures.
 6. **Workspace and collaboration surface**:
-   `live-md-loro` provides optional CRDT bindings, `apps/local-md-workspace`
-   provides the Grove local/Dropbox Markdown workspace and shared-file host or
-   guest UI, `apps/grove-relay` hosts Grove shared-file relay APIs with
-   Cloudflare Durable Objects and WebSocket transport, and `apps/collab-editor`
-   remains a separate shareable collaborative editor demo.
+`live-md-loro` provides optional CRDT bindings, `apps/local-md-workspace`
+provides the Grove local/Dropbox Markdown workspace and shared-file host or
+guest UI, `apps/grove-relay` hosts Grove shared-file relay APIs with
+Cloudflare Durable Objects and WebSocket transport, and `apps/collab-editor`
+remains a separate shareable collaborative editor demo.
 
 ## Workspace Structure
 
@@ -187,38 +193,39 @@ entry points, dependency boundaries, source layout, and validation notes.
 ## Apps and Tools
 
 - `apps/basic-editor`: Minimal Tree-sitter-only editor that imports
-  `@codemirror-treesitter/live-md/register` and renders one
-  `<live-md-editor>` element.
+`@codemirror-treesitter/live-md/register` and renders one
+`<live-md-editor>` element.
 - `apps/local-md-workspace`: Grove React, Vite+, shadcn/radix local-first
-  Markdown workspace that opens a browser-granted local folder, edits `.md`
-  files with LiveMD, supports Dropbox storage through OpenDAL WASM and OAuth
-  PKCE, supports image insert/paste/drop through sibling `assets/` directories,
-  supports file/folder create, rename, delete, tree browsing, and autosave, and
-  can host or join Grove shared-file sessions through `apps/grove-relay`.
+Markdown workspace that opens a browser-granted local folder, edits `.md`
+files with LiveMD, supports Dropbox storage through OpenDAL WASM and OAuth
+PKCE, supports image insert/paste/drop through sibling `assets/` directories,
+supports file/folder create, rename, delete, tree browsing, and autosave, and
+can host or join Grove shared-file sessions through `apps/grove-relay`.
 - `apps/grove-relay`: Grove shared-file relay Worker with Durable Object
-  persistence, share create/session/rotate/revoke APIs, WebSocket Loro sync,
-  bounded relay queues, share expiration cleanup, and Wrangler deploy/types
-  tasks.
+persistence, share create/session/rotate/revoke APIs, WebSocket Loro sync,
+bounded relay queues, share expiration cleanup, and Wrangler deploy/types
+tasks.
 - `apps/examples`: Side-by-side workbench comparing the local Tree-sitter
-  implementation with official CodeMirror/Lezer behavior on parser-relevant
-  examples, package coverage, merge/LSP behavior, and benchmark metrics.
+implementation with official CodeMirror/Lezer behavior on parser-relevant
+examples, package coverage, merge/LSP behavior, and benchmark metrics.
 - `apps/live-md-benchmark`: LiveMD performance benchmark harness for rendering,
-  editing, deletion, clipboard, and selection workflows.
+editing, deletion, clipboard, and selection workflows.
 - `apps/live-md-loro-demo`: Two-peer LiveMD collaboration demo with simulated
-  latency, offline queueing, and Loro snapshot resync.
+latency, offline queueing, and Loro snapshot resync.
 - `apps/collab-editor`: Cloudflare Workers app with a Durable Object room,
-  WebSocket Loro sync, local snapshot recovery, hash-based room URLs,
-  standalone share lifecycle APIs, and deployment/types tasks through Wrangler.
+WebSocket Loro sync, local snapshot recovery, hash-based room URLs,
+standalone share lifecycle APIs, and deployment/types tasks through Wrangler.
 - `tools/audit.mjs`: Repository audit that checks package names, Lezer-free
-  guarantees, public export parity, command and autocomplete stubs, basic setup
-  parity, language-data metadata/load coverage, example coverage, merge/LSP
-  usage, and benchmark app wiring.
+guarantees, public export parity, command and autocomplete stubs, basic setup
+parity, language-data metadata/load coverage, example coverage, merge/LSP
+usage, and benchmark app wiring.
 
 ## Web Component
 
 The `<live-md-editor>` custom element wraps a Tree-sitter-backed CodeMirror
 Markdown editor in Shadow DOM. Import the register entry point once, then use
 the element anywhere in your HTML.
+
 
 ```ts
 import "@codemirror-treesitter/live-md/register";
@@ -237,19 +244,19 @@ import "@codemirror-treesitter/live-md/style.css";
 
 ### Properties
 
-| Property         | Type                 | Description                                                  |
-| ---------------- | -------------------- | ------------------------------------------------------------ |
-| `value`          | `string`             | Current Markdown content, read/write.                        |
-| `defaultValue`   | `string`             | Initial content, read/write.                                 |
-| `persistKey`     | `string \| null`     | `localStorage` key, read/write.                              |
-| `placeholder`    | `string`             | Placeholder text, read/write.                                |
-| `readOnly`       | `boolean`            | Whether the editor is read-only, read/write.                 |
-| `dirty`          | `boolean`            | Whether content has changed since `markClean()`.             |
-| `selectionStart` | `number`             | Selection anchor position, read/write.                       |
-| `selectionEnd`   | `number`             | Selection head position, read/write.                         |
-| `view`           | `EditorView \| null` | The underlying CodeMirror `EditorView` instance.             |
-| `extensions`     | `Extension`          | Optional CodeMirror extensions configured from JavaScript.   |
-| `ready`          | `Promise<void>`      | Resolves after Markdown and code-fence languages are loaded. |
+| Property         | Type                | Description                                                  |
+| ---------------- | ------------------- | ------------------------------------------------------------ |
+| `value`          | `string`            | Current Markdown content, read/write.                        |
+| `defaultValue`   | `string`            | Initial content, read/write.                                 |
+| `persistKey`     | `string | null`     | `localStorage` key, read/write.                              |
+| `placeholder`    | `string`            | Placeholder text, read/write.                                |
+| `readOnly`       | `boolean`           | Whether the editor is read-only, read/write.                 |
+| `dirty`          | `boolean`           | Whether content has changed since `markClean()`.             |
+| `selectionStart` | `number`            | Selection anchor position, read/write.                       |
+| `selectionEnd`   | `number`            | Selection head position, read/write.                         |
+| `view`           | `EditorView | null` | The underlying CodeMirror `EditorView` instance.             |
+| `extensions`     | `Extension`         | Optional CodeMirror extensions configured from JavaScript.   |
+| `ready`          | `Promise<void>`     | Resolves after Markdown and code-fence languages are loaded. |
 
 ### Methods
 
@@ -295,6 +302,7 @@ custom properties on the host element.
 
 ## Programmatic API
 
+
 ```ts
 import { createLiveMdEditor, liveMdCodeFenceHighlighting } from "@codemirror-treesitter/live-md";
 import { gruvboxDarkHighlightStyle } from "@codemirror-treesitter/theme-gruvbox";
@@ -337,6 +345,7 @@ fenced code token colors with a host theme.
 Install `@codemirror-treesitter/live-md-loro` when a LiveMD editor should bind
 to a Loro CRDT document. The default LiveMD package does not import Loro.
 
+
 ```ts
 import { createLiveMdEditor } from "@codemirror-treesitter/live-md";
 import { liveMdLoroCollaboration } from "@codemirror-treesitter/live-md-loro";
@@ -354,6 +363,7 @@ createLiveMdEditor({
 
 Web Component users opt in through the JavaScript-only `extensions` property:
 
+
 ```ts
 const editor = document.createElement("live-md-editor");
 editor.extensions = [liveMdLoroCollaboration({ doc })];
@@ -366,29 +376,29 @@ through `EphemeralStore`, and optional Loro undo managers.
 ## Implementation Notes
 
 - Tree-sitter incremental reparsing edits the previous `Tree` with CodeMirror
-  change data and passes the edited tree back into `Parser.parse(...)`.
+change data and passes the edited tree back into `Parser.parse(...)`.
 - Parsing honors CodeMirror-style time budgets through Tree-sitter's
-  `progressCallback`, allowing large parses to stop and resume.
+`progressCallback`, allowing large parses to stop and resume.
 - Mixed-language parsing uses Tree-sitter `includedRanges` for nested regions.
-  HTML and Vue currently nest JavaScript in `<script>` blocks and CSS in
-  `<style>` blocks, and nested parser sources can defer async parser loads via
-  `ParseContext.getSkippingParser(...)`.
+HTML and Vue currently nest JavaScript in `<script>` blocks and CSS in
+`<style>` blocks, and nested parser sources can defer async parser loads via
+`ParseContext.getSkippingParser(...)`.
 - `language-data` lazy-loads grammar WASM files and published highlight
-  queries, so `LanguageDescription.load()` only resolves assets needed for the
-  selected language.
+queries, so `LanguageDescription.load()` only resolves assets needed for the
+selected language.
 - The syntax tree wrapper preserves CodeMirror-facing names such as `Tree`,
-  `SyntaxNode`, `NodeType`, and `TreeCursor`, while exposing
-  Tree-sitter-backed navigation, status, field, descendant, and error helpers.
+`SyntaxNode`, `NodeType`, and `TreeCursor`, while exposing
+Tree-sitter-backed navigation, status, field, descendant, and error helpers.
 - `HighlightStyle`, `syntaxHighlighting`, `tags`, and `tagHighlighter` are
-  implemented locally and map Tree-sitter capture names into CodeMirror-style
-  highlight tags.
+implemented locally and map Tree-sitter capture names into CodeMirror-style
+highlight tags.
 - Indentation, folding, bracket matching, bidi isolates, comment tokens, and
-  stream-parser language support are implemented without Lezer.
+stream-parser language support are implemented without Lezer.
 - Some upstream `language-data` entries that only have legacy stream modes are
-  covered with compact in-repo grammar/style shims.
+covered with compact in-repo grammar/style shims.
 - `grove-relay` persists Durable Object snapshots and bounded update logs for
-  Grove shared files. `collab-editor` keeps the separate generated-room demo
-  behavior.
+Grove shared files. `collab-editor` keeps the separate generated-room demo
+behavior.
 
 ## Parity Targets
 
@@ -397,30 +407,31 @@ workspace reimplements, not identical internals. `tools/audit.mjs` enforces the
 main contract:
 
 - `@codemirror-treesitter/language` exports every public name from upstream
-  `@codemirror/language`'s index and exposes local Tree-sitter highlight
-  helpers.
+`@codemirror/language`'s index and exposes local Tree-sitter highlight
+helpers.
 - `@codemirror-treesitter/commands` exports every public name from upstream
-  `@codemirror/commands`, `comment`, and `history`, and does not leave known
-  no-op command placeholders.
+`@codemirror/commands`, `comment`, and `history`, and does not leave known
+no-op command placeholders.
 - `@codemirror-treesitter/autocomplete` exports every public name from upstream
-  `@codemirror/autocomplete`, and does not leave known completion-context
-  placeholders.
+`@codemirror/autocomplete`, and does not leave known completion-context
+placeholders.
 - `@codemirror-treesitter/basic-setup` matches upstream `basicSetup`,
-  `minimalSetup`, and basic keymap ordering.
+`minimalSetup`, and basic keymap ordering.
 - `@codemirror-treesitter/language-data` mirrors upstream language metadata and
-  all built language entries load a parser.
+all built language entries load a parser.
 - `@codemirror-treesitter/theme-gruvbox` exports both dark and light Gruvbox
-  themes and imports syntax highlighting from the local Tree-sitter language
-  package.
+themes and imports syntax highlighting from the local Tree-sitter language
+package.
 - `@codemirror-treesitter/merge` and
-  `@codemirror-treesitter/lsp-client` expose upstream-compatible public
-  surfaces and use the local Tree-sitter language/highlighting packages.
+`@codemirror-treesitter/lsp-client` expose upstream-compatible public
+surfaces and use the local Tree-sitter language/highlighting packages.
 - Parser-relevant official examples are implemented in `apps/examples` or
-  explicitly classified as out of scope.
+explicitly classified as out of scope.
 
 ## Development
 
 Use Vite+ from the workspace root:
+
 
 ```bash
 vp install
@@ -432,11 +443,13 @@ vp run audit
 
 The root script `vp run ready` runs the full local validation path:
 
+
 ```bash
 vp run ready
 ```
 
 Useful task selectors:
+
 
 ```bash
 vp run @codemirror-treesitter/language#test
@@ -496,15 +509,15 @@ standard app path or the Playwright browser cache.
 ## Documentation Map
 
 - `AGENTS.md`: contributor and coding-agent workflow, stack snapshot,
-  validation expectations, package boundaries, and app task notes.
+validation expectations, package boundaries, and app task notes.
 - `packages/*/README.md`: package-local API, source layout, dependencies, and
-  validation commands.
+validation commands.
 - `packages/live-md-loro/README.md`: optional collaboration binding docs.
 - `packages/opendal-wasm-browser/README.md`: browser OpenDAL WASM wrapper API,
-  build commands, and validation notes.
+build commands, and validation notes.
 - `packages/opendal-wasm-browser/PLAN.md`: cloud workspace integration plan.
 - `apps/local-md-workspace/COLLABORATION_PLAN.md`: owner-backed single-file
-  collaboration plan, Dropbox workspace semantics, and cleanup/implementation
-  phases.
+collaboration plan, Dropbox workspace semantics, and cleanup/implementation
+phases.
 - This README: repository-level architecture, workspace structure, apps, and
-  LiveMD web component/API reference.
+LiveMD web component/API reference.
