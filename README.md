@@ -1,6 +1,6 @@
 # GroveMd
 
-I don't think this is a 
+I don't think this is a *googd* idea
 
 &#8203;
 
