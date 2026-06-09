@@ -1,7 +1,5 @@
 # GroveMd
 
-I don't think this is a *googd* 
-
 &#8203;
 
 GroveMd is a local-first Markdown workspace for writing directly from the files
